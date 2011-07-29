@@ -5,16 +5,17 @@ Maintainer: SimpleGeo Nerds <nerds@simplegeo.com>
 Uploaders: Ian Eure <ian@simplegeo.com>
 Build-Depends: cdbs,
  debhelper (>= 7.0.50~),
+ python
  python-support,
  cdbs
-Standards-Version: 3.8.4
+Standards-Version: 3.9.1
 Homepage: https://github.com/aparo/pyes
 Vcs-Git: https://github.com/simplegeo/pyes.git
 Vcs-Browser: Vcs-Git: https://github.com/simplegeo/pyes/tree/master
 
 Package: python-pyes
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, python
 Recommends: python-thrift,
  python-simplejson
 Description: Python connector for ElasticSearch
