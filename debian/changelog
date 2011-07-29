@@ -1,5 +1,5 @@
-pyes (0.17.0-0sg0~e7af71-1) foss-development; urgency=low
+pyes (0.16.99999-0sg0) foss-development; urgency=low
 
-  * Packaged.
+  * Packaged what will become 0.17.0.
 
  -- Ian Eure <ian@simplegeo.com>  Fri, 29 Jul 2011 17:36:00 +0000
