@@ -97,7 +97,7 @@ class ES(object):
     ES connection object.
     """
 
-    def __init__(self, server, timeout=5.0, bulk_size=400,
+    def __init__(self, server="localhost:9200", timeout=5.0, bulk_size=400,
                  encoder=None, decoder=None,
                  max_retries=3, autorefresh=False,
                  default_indices=['_all'],
@@ -142,6 +142,7 @@ class ES(object):
         self.bulk_size = bulk_size #size of the bulk
         self.bulk_data = StringIO()
         self.bulk_items = 0
+        self.last_bulk_response = None #last response of a bulk insert
 
         self.info = {} #info about the current server
         self.mappings = None #track mapping
@@ -706,7 +707,7 @@ class ES(object):
         self.bulk_data.write(header)
         self.bulk_data.write(document)
         self.bulk_items += 1
-        self.flush_bulk()
+        return self.flush_bulk()
 
     def index(self, doc, index, doc_type, id=None, parent=None, force_insert=False, bulk=False, version=None, querystring_args=None):
         """
@@ -735,9 +736,7 @@ class ES(object):
             self.bulk_data.write(doc)
             self.bulk_data.write("\n")
             self.bulk_items += 1
-            self.flush_bulk()
-            return
-
+            return self.flush_bulk()
 
         if force_insert:
             querystring_args['opType'] = 'create'
@@ -761,17 +760,24 @@ class ES(object):
         Wait to process all pending operations
         """
         if not forced and self.bulk_items < self.bulk_size:
-            return
-        self.force_bulk()
+            return None
+        return self.force_bulk()
 
     def force_bulk(self):
         """
-        Force executing of all bulk data
+        Force executing of all bulk data.
+        
+        Return the bulk response
+        
+        If not item self.last_bulk_response to None and returns None
         """
         if self.bulk_items != 0:
-            self._send_request("POST", "/_bulk", self.bulk_data.getvalue())
+            self.last_bulk_response = self._send_request("POST", "/_bulk", self.bulk_data.getvalue())
             self.bulk_data = StringIO()
             self.bulk_items = 0
+        else:
+            self.last_bulk_response = None
+        return self.last_bulk_response
 
     def put_file(self, filename, index, doc_type, id=None):
         """
