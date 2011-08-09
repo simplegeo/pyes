@@ -1,3 +1,12 @@
+pyes (0.16.99999-0sg6) maverick; urgency=low
+
+  [ Ian Eure ]
+  * Update dependencies, we require importlib.
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Tue, 09 Aug 2011 21:19:52 +0000
+
 pyes (0.16.99999-0sg5) maverick; urgency=low
 
   * UNRELEASED
