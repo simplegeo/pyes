@@ -1,3 +1,29 @@
+pyes (0.16.99999-0sg7) maverick; urgency=low
+
+  [ Ian Eure ]
+  * Add `get_settings()`.
+
+  [ Alberto Paro ]
+  * Added ES.last_bulk_response to keep track of the last response in a
+    bulk
+  * Added response to ES.force_bulk. closes #76
+  * improved bulk response. fix #76
+  * improved bulk response for index_raw_bulk.
+
+  [ Mitja Kramberger ]
+  * Added support for top filters
+
+  [ Alberto Paro ]
+  * Added default 'localhost:9200' to ES if no server is defined. closes
+    #79
+
+  [ Petri Lehtinen ]
+  * Support filter_params in CouchDB river
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Tue, 09 Aug 2011 21:48:34 +0000
+
 pyes (0.16.99999-0sg6) maverick; urgency=low
 
   [ Ian Eure ]
