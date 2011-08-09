@@ -8,6 +8,7 @@ Build-Depends: cdbs,
  python,
  python-setuptools,
  python-support,
+ python-importlib,
  cdbs
 Standards-Version: 3.9.1
 Homepage: https://github.com/aparo/pyes
@@ -18,6 +19,7 @@ Package: python-pyes
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, python
 Recommends: python-thrift,
+ python-importlib,
  python-simplejson
 Description: Python connector for ElasticSearch
  pyes is a connector to use ElasticSearch from Python.
